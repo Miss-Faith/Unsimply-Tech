@@ -20,7 +20,7 @@ class ProdConfig(Config):
     Args:
         Config: The parent configuration class with General configuration settings
     '''
-
+  
     pass
 
 class DevConfig(Config):
@@ -31,6 +31,7 @@ class DevConfig(Config):
         Config: The parent configuration class with General configuration settings
     '''
 
+    SQLALCHEMY_DATABASE_URI=os.getenv('SQLALCHEMY_DATABASE_URI')
     DEBUG = True
 
 class TestConfig(Config):
@@ -40,7 +41,7 @@ class TestConfig(Config):
     Args:
         Config: The parent configuration class with General configuration settings
     '''
-    pass 
+    SQLALCHEMY_DATABASE_URI=os.getenv('SQLALCHEMY_DATABASE_URI_TEST')
 
 
 config_options = {
