@@ -3,6 +3,7 @@ class Config:
     General configuration parent class
     '''
 
+    QUOTES_URL = 'http://quotes.stormconsultancy.co.uk/random.json'
     
 
 class ProdConfig(Config):
