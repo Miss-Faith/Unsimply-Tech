@@ -3,10 +3,10 @@ class Quote:
     Quote class to define quotes
     '''
 
-    all_articles = []
+    all_quotes = []
 
     def __init__(self,author,id,quote):
-        self.author = name
+        self.author = author
         self.id = id
         self.quote = quote
 
