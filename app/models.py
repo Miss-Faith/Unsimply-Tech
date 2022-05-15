@@ -19,6 +19,10 @@ class Quote:
     def save_quote(self):
         Quote.all_quotes.append(self)
 
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
 class User(UserMixin,db.Model):
     __tablename__ = 'users'
 
