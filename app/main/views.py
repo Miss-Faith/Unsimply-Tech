@@ -15,3 +15,28 @@ def index():
   '''
 
   return render_template('index.html')
+
+@main.route('/blogs')
+def blogs():
+    '''
+    View categories page function that returns the pitch details page
+    '''
+    blogs = Blog.query.all()
+    return render_template('blogs.html', blogs = blogs)
+
+@main.route('/new_blog', methods = ['POST','GET'])
+@login_required
+def new_blog():
+    form = BlogForm()
+    if form.validate_on_submit():
+        title = form.title.data
+        description = form.description.data
+        blog = form.blog.data
+        user_id = current_user
+        
+        new_blog_object = Blog(blog=blog,user_id=current_user._get_current_object().id)
+        new_blog_object.save_blog()
+        return redirect(url_for('main.blogs'))
+        
+    return render_template('new_blog.html', form = form)
+
