@@ -1,7 +1,3 @@
-import os
-from dotenv import load_dotenv, find_dotenv
-load_dotenv()
-
 class Config:
     '''
     General configuration parent class
