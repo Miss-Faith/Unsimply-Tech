@@ -1,0 +1,31 @@
+{% macro display(blogs) %}
+<div class="container-fluid">
+	<div class="row">
+	{% if blogs %}
+		{% for blog in blogs %}
+		<div class="col-md-4" >
+			<div class="thumbnail" id="carded">
+				<h5 class="card-header">{{blog.title}}</h5>
+				<div class="card-body">
+					<p>{{blog.description}}</p>
+          <img src="" alt="">
+					<p class="text-center"> Blog: {{blog.blog}}</p>
+					<footer class="blockquote-footer text-center" > Posted by: {{blog.user.username}}</footer>
+			  	<div>
+            <span class="foot" >{{blog.comment.count()}} Blogs</span> 
+          </div>
+					<a href="{{url_for('main.comment',blog_id = blog.id)}}" class="btn btn-info btn-sm"> Blog</a>
+				</div>
+			</div>        
+		</div>
+		{% endfor %}
+	{% else %}
+	  <div class="card w-90 mb-3">
+			<div class="card-body">				
+				<p class="card-title">No blogs have been posted yet</p>
+			</div>
+		</div>
+	{% endif %}
+	</div>
+</div>
+{% endmacro %}
