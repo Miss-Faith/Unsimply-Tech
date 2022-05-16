@@ -1,19 +1,17 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light">
   <div class="container-fluid">
     <a class=" side1 navbar-brand" href="/">
-      Unsimply <br> Tech
+      Unsimply Tech
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="{{url_for('main.blogs')}}" id="navbarTogglerDemo02" role="button" data-bs-toggle="dropdown" aria-expanded="false">All Blogs</a>
+        <li class="nav-item">
+          <a class="nav-link" href="{{url_for('main.blogs')}}">All Blogs</a>
         </li>
         {% if current_user.is_authenticated %}
         <li class="nav-item dropdown">
-            <a class="nav-link" href="{{url_for('main.new_blog')}}" id="navbarTogglerDemo02" role="button" data-bs-toggle="dropdown" aria-expanded="false">New Blog</a>
+            <a class="nav-link" href="{{url_for('main.new_blog')}}">New Blog</a>
         </li>
         {% endif %}
       </ul>

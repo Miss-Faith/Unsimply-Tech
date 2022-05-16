@@ -1,11 +1,13 @@
 {% extends 'base.html'%}
-
 {% block content %}
 
 <div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1 class="display-4">Unsimply Tech</h1>
-    <p class="lead">Bringing you the latest in tech.</p>
+  <div class="container index_container">
+    <div class ="col-4 text-center">
+      <h1 class="display-1">Unsimply <br>Tech</h1>
+      <p class="lead">Bringing you the latest in tech.</p>
+      <a href="{{url_for('main.blogs')}}" class="btn btn-md btn-outline-warning"> Get Started</a>
+    </div>
   </div>
 </div>
 

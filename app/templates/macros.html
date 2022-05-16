@@ -6,7 +6,7 @@
 
 		<hr>
 		<div class="col" d-flex justify-content-center>
-			<div class="thumbnail" id="carded">
+			<div class="thumbnail">
 				<h5 class="card-header">{{blog.title}}</h5>
 				<div class="card-body">
 					<p>{{blog.description}}</p>
@@ -15,12 +15,12 @@
 					<footer class="blockquote-footer text-center" > Posted by: {{blog.user.username}}</footer>
 					<footer class="blockquote-footer text-center" > Posted on: {{blog.time.strftime('%d-%m-%Y')}}</footer>
 			  	<div>
-            <span class="foot" >{{blog.comment.count()}} Comments</span> 
+            <small><span class="foot" >{{blog.comment.count()}}</span>Comments</small>
           </div>
-					<a href="{{url_for('main.comment',blog_id = blog.id)}}" class="btn btn-info btn-sm"> Comment</a>
+					<a href="{{url_for('main.comment',blog_id = blog.id)}}"><i class="fa fa-comments-o" aria-hidden="true"></i></a>
 					{% if blog.user == current_user %}
-					<a href="{{url_for('main.updateblog',blog_id = blog.id)}}" class="btn btn-info btn-sm"> Edit</a>
-					<a href="{{url_for('main.delete_blog',blog_id = blog.id)}}" class="btn btn-info btn-sm"> Delete</a>
+					<a href="{{url_for('main.updateblog',blog_id = blog.id)}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+					<a href="{{url_for('main.delete_blog',blog_id = blog.id)}}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 					{% endif %}
 				</div>
 			</div>        

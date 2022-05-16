@@ -5,36 +5,39 @@
   font-family: 'Fredoka', sans-serif;
 }
 
-p{
-  font-family: 'Rancho', cursive;
-  font-size: large;
-}
-
 body {
   background-image: url('../images/image (2).jpg');
   background-position: center;
   background-size: cover;
   height: 100vh;
-
-}
-
-image-1 {
-  position: center;
-  height: 10px;
 }
 
 .tab-pane {
-  background-color: white;
+  background-color: beige;
 }
 
 .side2{
-  margin-left: 50%;
+  margin-left: 45%;
 }
 
 .side1{
-  margin-left: 10%;
+  margin-left: 2%;
 }
 
-button{
-  background-color: bisque;
+.navbar-expand-lg{
+  background-color: beige;
+}
+
+.jumbotron {
+  padding-top: 15vh;
+  padding-left: 3vh;
+  color: beige;
+}
+
+.heading {
+  color: beige;
+}
+
+a{
+  margin-left: 10px;
 }
