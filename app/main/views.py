@@ -34,9 +34,12 @@ def new_blog():
         title = form.title.data
         description = form.description.data
         blog = form.blog.data
-        user_id = current_user
+        user_id = current_user._get_current_object().id
         
-        new_blog_object = Blog(blog=blog,user_id=current_user._get_current_object().id)
+
+        mail_message("Welcome to Unsimply Tech","email/blog_notification",user.email,user=user_id)
+        
+        new_blog_object = Blog(blog=blog,user_id=user_id)
         new_blog_object.save_blog()
         return redirect(url_for('main.blogs'))
         
