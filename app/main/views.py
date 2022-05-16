@@ -43,7 +43,7 @@ def new_blog():
         for subscriber in subscribers:
             mail_message("New Blog Post","email/blog_notification",subscriber.email,blog=blog)
         return redirect(url_for('main.blogs'))
-        flash('You Posted a new Blog')
+        flash('You posted a new blog')
 
         
     return render_template('new_blog.html', form = form)
@@ -109,12 +109,22 @@ def profile(uname):
 @login_required
 def delete_blog(blog_id):
     blog = Blog.query.get(blog_id)
-    # if blog.user != current_user:
-    #     abort(403)
+    if blog.user != current_user:
+        abort(403)
     db.session.delete(blog)
     db.session.commit()
 
     flash("You have deleted your Blog succesfully!")
+    return redirect(url_for('main.blogs'))
+
+@main.route('/comment/<comment_id>/delete', methods = ['GET','POST'])
+@login_required
+def delete_comment(comment_id):
+    comment = Comment.query.get(comment_id)
+    db.session.delete(comment)
+    db.session.commit()
+
+    flash("You have deleted the comment succesfully!")
     return redirect(url_for('main.blogs'))
 
 
@@ -139,6 +149,7 @@ def updateblog(blog_id):
         db.session.commit()
         flash("You have updated your Blog!")
         return redirect(url_for('main.blogs',id = blog.id)) 
+
     if request.method == 'GET':
         form.title.data = blog.title
         form.description.data = blog.description

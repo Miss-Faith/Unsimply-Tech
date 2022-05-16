@@ -82,13 +82,13 @@ class Comment(db.Model):
     comment = db.Column(db.Text(),nullable = False)
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'),nullable = False)
     blog_id = db.Column(db.Integer,db.ForeignKey('blogs.id'),nullable = False)
-
+    
     def save_comment(self):
         db.session.add(self)
         db.session.commit()
 
     def delete_comment(self):
-        db.session.remove(self)
+        db.session.delete(self)
         db.session.commit()
 
     @classmethod
