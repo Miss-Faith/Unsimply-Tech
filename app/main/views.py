@@ -29,7 +29,7 @@ def blogs():
 @main.route('/new_blog', methods = ['POST','GET'])
 @login_required
 def new_blog():
-    subscribers = Subscriber.query.all()
+    subscribers = User.query.all()
     form = BlogForm()
     if form.validate_on_submit():
         title = form.title.data
@@ -37,11 +37,11 @@ def new_blog():
         blog = form.blog.data
         user_id = current_user._get_current_object().id
         
-        new_blog_object = Blog(blog=blog,user_id=user_id)
+        new_blog_object = Blog(blog=blog,user_id=user_id,title=title,description=description)
         new_blog_object.save_blog()
 
         for subscriber in subscribers:
-            mail_message("New Blog Post","email/new_blog",subscriber.email,blog=blog)
+            mail_message("New Blog Post","email/blog_notification",subscriber.email,blog=blog)
         return redirect(url_for('main.blogs'))
         flash('You Posted a new Blog')
 
@@ -140,12 +140,3 @@ def updateblog(blog_id):
         form.title.data = blog.title
         form.content.data = blog.content
     return render_template('newblog.html', form = form)
-
-@main.route('/subscribe',methods = ['POST','GET'])
-def subscribe():
-    email = request.form.get('subscriber')
-    new_subscriber = Subscriber(email = email)
-    new_subscriber.save_subscriber()
-    mail_message("Subscribed to D-Blog","email/welcome_subscriber",new_subscriber.email,new_subscriber=new_subscriber)
-    flash('Sucessfuly subscribed')
-    return redirect(url_for('main.index'))
