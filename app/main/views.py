@@ -104,3 +104,30 @@ def profile(uname):
         abort(404)
 
     return render_template("profile/profile.html", user = user,posts=posts)
+
+@main.route('/subscribe',methods = ['POST','GET'])
+def subscribe():
+    email = request.form.get('subscriber')
+    new_subscriber = Subscriber(email = email)
+    new_subscriber.save_subscriber()
+    mail_message("Subscribed to D-Blog","email/welcome_subscriber",new_subscriber.email,new_subscriber=new_subscriber)
+    flash('Sucessfuly subscribed')
+    return redirect(url_for('main.index'))
+
+@main.route('/blog/<blog_id>/delete', methods = ['POST'])
+@login_required
+def delete_post(blog_id):
+    blog = Blog.query.get(blog_id)
+    if blog.user != current_user:
+        abort(403)
+    blog.delete()
+    flash("You have deleted your Blog succesfully!")
+    return redirect(url_for('main.index'))
+
+
+@main.route('/user/<string:username>')
+def user_posts(username):
+    user = User.query.filter_by(username=username).first()
+    page = request.args.get('page',1, type = int )
+    blogs = Blog.query.filter_by(user=user).order_by(Blog.posted.desc()).paginate(page = page, per_page = 4)
+    return render_template('userposts.html',blogs=blogs,user = user)
