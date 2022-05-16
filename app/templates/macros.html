@@ -18,10 +18,10 @@
             <small><span class="foot" >{{blog.comment.count()}}</span>Comments</small>
           </div>
 					<a href="{{url_for('main.comment',blog_id = blog.id)}}"><i class="fa fa-comments-o" aria-hidden="true"></i></a>
-					{% if blog.user == current_user %}
+					
 					<a href="{{url_for('main.updateblog',blog_id = blog.id)}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 					<a href="{{url_for('main.delete_blog',blog_id = blog.id)}}"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-					{% endif %}
+				
 				</div>
 			</div>        
 		</div>
