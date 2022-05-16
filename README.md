@@ -1,7 +1,7 @@
 # [Unsimply Tech](https://github.com/Miss-Faith/Unsimply-Tech)
 #### By [Faith Mwangi](https://github.com/miss-faith)
 ### Description
-A landing page that provides users with a list of pitches. A User is able to create an account, update their profile, add new pitches and comment on existing pitches.
+A landing page that provides users with blogs. A User is able to create an account, update their profile, add new blogs, delete or update their blogs and comment on existing blogss.
 ## Site
 [Unsimply Tech](https://unsimplytech.herokuapp.com/)
 ### Setup Requirements
