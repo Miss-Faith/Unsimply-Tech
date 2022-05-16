@@ -53,7 +53,7 @@ def new_blog():
 def comment(blog_id):
     form = CommentForm()
     blog = Blog.query.get(blog_id)
-    all_comments = Comment.query.filter_by(pitch_id = pitch_id).all()
+    all_comments = Comment.query.filter_by(blog_id = blog_id).all()
     if form.validate_on_submit():
         comment = form.comment.data 
         blog_id = blog_id
@@ -61,7 +61,7 @@ def comment(blog_id):
         new_comment = Comment(comment = comment,user_id = user_id,blog_id = blog_id)
         new_comment.save_comment()
 
-        return redirect(url_for('.comment', blog_id = blog_id))
+        return redirect(url_for('.blogs', blog_id = blog_id))
 
     return render_template('comment.html', form =form, blog = blog,all_comments=all_comments)
 
