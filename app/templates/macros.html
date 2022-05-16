@@ -1,6 +1,7 @@
 {% macro display(blogs) %}
+<div class="row">
 	{% if blogs %}
-	<div class="container-fluid"></div>
+	<div class="container-fluid">
 		{% for blog in blogs %}
 
 		<hr>
@@ -12,6 +13,7 @@
           <img src="" alt="">
 					<p class="text-center"> Blog: {{blog.blog}}</p>
 					<footer class="blockquote-footer text-center" > Posted by: {{blog.user.username}}</footer>
+					<footer class="blockquote-footer text-center" > Posted on: {{blog.time.strftime('%d-%m-%Y')}}</footer>
 			  	<div>
             <span class="foot" >{{blog.comment.count()}} Comments</span> 
           </div>
@@ -24,8 +26,9 @@
 			</div>        
 		</div>
 		<hr>
+		<br>
 		{% endfor %}
-		<br><br>
+		<br>
 	{% else %}
 	  <div class="card w-90 mb-3">
 			<div class="card-body">				
@@ -35,4 +38,5 @@
 	{% endif %}
 	</div>
 </div>
+<br>
 {% endmacro %}

@@ -7,6 +7,7 @@ from . import main
 from .. import db,photos
 from .forms import *
 from app.request import get_quote
+from sqlalchemy import desc
 
 #views
 @main.route('/')
@@ -23,7 +24,7 @@ def blogs():
     View categories page function that returns the pitch details page
     '''
     quote = get_quote()
-    blogs = Blog.query.all()
+    blogs = Blog.query.order_by(Blog.time.desc())
     return render_template('blogs.html', blogs = blogs, quote=quote)
 
 @main.route('/new_blog', methods = ['POST','GET'])
@@ -128,12 +129,12 @@ def delete_comment(comment_id):
     return redirect(url_for('main.blogs'))
 
 
-@main.route('/user/<string:username>')
-def user_posts(username):
-    user = User.query.filter_by(username=username).first()
-    page = request.args.get('page',1, type = int )
-    blogs = Blog.query.filter_by(user=user).order_by(Blog.posted.desc()).paginate(page = page, per_page = 4)
-    return render_template('userposts.html',blogs=blogs,user = user)
+# @main.route('/user/<string:username>')
+# def user_posts(username):
+#     user = User.query.filter_by(username=username).first()
+#     page = request.args.get('page',1, type = int )
+#     blogs = Blog.query.filter_by(user=user).order_by(Blog.posted.desc()).paginate(page = page, per_page = 4)
+#     return render_template('userposts.html',blogs=blogs,user = user)
 
 @main.route('/blog/<blog_id>/update', methods = ['GET','POST'])
 @login_required
