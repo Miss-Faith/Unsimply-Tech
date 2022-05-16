@@ -34,6 +34,15 @@ def register():
         title = "New Account"
     return render_template('auth/register.html',registration_form = form)
 
+@auth.route('/subscribe',methods = ['POST','GET'])
+def subscribe():
+    email = request.form.get('subscriber')
+    new_subscriber = Subscriber(email = email)
+    new_subscriber.save_subscriber()
+    mail_message("Subscribed to D-Blog","email/welcome_subscriber",new_subscriber.email,new_subscriber=new_subscriber)
+    flash('Sucessfuly subscribed')
+    return redirect(url_for('main.index'))
+
 @auth.route('/logout')
 @login_required
 def logout():
