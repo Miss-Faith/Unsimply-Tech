@@ -6,6 +6,7 @@ from ..models import *
 from . import main
 from .. import db,photos
 from .forms import *
+from app.request import get_quote
 
 #views
 @main.route('/')
@@ -21,8 +22,9 @@ def blogs():
     '''
     View categories page function that returns the pitch details page
     '''
+    quote = get_quote()
     blogs = Blog.query.all()
-    return render_template('blogs.html', blogs = blogs)
+    return render_template('blogs.html', blogs = blogs, quote=quote)
 
 @main.route('/new_blog', methods = ['POST','GET'])
 @login_required

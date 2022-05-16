@@ -1,7 +1,8 @@
 import urllib.request,json
+from .models import *
 
 # Getting the quote base url
-quote_url = None
+quote_url = 'http://quotes.stormconsultancy.co.uk/random.json'
 
 def configure_request(app):
     global quote_url

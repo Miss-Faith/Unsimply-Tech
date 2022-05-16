@@ -12,11 +12,11 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="{{url_for('main.blogs')}}" id="navbarTogglerDemo02" role="button" data-bs-toggle="dropdown" aria-expanded="false">All Pitches</a>
+          <a class="nav-link dropdown-toggle" href="{{url_for('main.blogs')}}" id="navbarTogglerDemo02" role="button" data-bs-toggle="dropdown" aria-expanded="false">All Blogs</a>
         </li>
         {% if current_user.is_authenticated %}
         <li class="nav-item dropdown">
-            <a class="nav-link" href="{{url_for('main.new_blog')}}" id="navbarTogglerDemo02" role="button" data-bs-toggle="dropdown" aria-expanded="false">New Pitch</a>
+            <a class="nav-link" href="{{url_for('main.new_blog')}}" id="navbarTogglerDemo02" role="button" data-bs-toggle="dropdown" aria-expanded="false">New Blog</a>
         </li>
         {% endif %}
       </ul>
