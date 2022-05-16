@@ -29,6 +29,7 @@ def blogs():
 @main.route('/new_blog', methods = ['POST','GET'])
 @login_required
 def new_blog():
+    subscribers = Subscriber.query.all()
     form = BlogForm()
     if form.validate_on_submit():
         title = form.title.data
@@ -36,12 +37,14 @@ def new_blog():
         blog = form.blog.data
         user_id = current_user._get_current_object().id
         
-
-        mail_message("Welcome to Unsimply Tech","email/blog_notification",user.email,user=user_id)
-        
         new_blog_object = Blog(blog=blog,user_id=user_id)
         new_blog_object.save_blog()
+
+        for subscriber in subscribers:
+            mail_message("New Blog Post","email/new_blog",subscriber.email,blog=blog)
         return redirect(url_for('main.blogs'))
+        flash('You Posted a new Blog')
+
         
     return render_template('new_blog.html', form = form)
 
