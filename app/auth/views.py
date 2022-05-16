@@ -1,7 +1,7 @@
 from . import auth
 from flask import render_template,redirect,url_for,flash,request
 from flask_login import login_user,logout_user,login_required
-from ..models import User
+from ..models import *
 from .forms import LoginForm,RegistrationForm
 from .. import db
 from ..email import mail_message
@@ -13,7 +13,7 @@ def login():
         user = User.query.filter_by(email = login_form.email.data).first()
         if user is not None and user.verify_password(login_form.password.data):
             login_user(user,login_form.remember.data)
-            return redirect(request.args.get('next') or url_for('main.index'))
+            return redirect(request.args.get('next') or url_for('main.subscribe'))
 
         flash('Invalid username or Password')
 
@@ -33,15 +33,6 @@ def register():
         return redirect(url_for('auth.login'))
         title = "New Account"
     return render_template('auth/register.html',registration_form = form)
-
-@auth.route('/subscribe',methods = ['POST','GET'])
-def subscribe():
-    email = request.form.get('subscriber')
-    new_subscriber = Subscriber(email = email)
-    new_subscriber.save_subscriber()
-    mail_message("Subscribed to D-Blog","email/welcome_subscriber",new_subscriber.email,new_subscriber=new_subscriber)
-    flash('Sucessfuly subscribed')
-    return redirect(url_for('main.index'))
 
 @auth.route('/logout')
 @login_required
