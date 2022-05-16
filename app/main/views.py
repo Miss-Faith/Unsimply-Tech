@@ -105,15 +105,17 @@ def profile(uname):
 
     return render_template("profile/profile.html", user = user,posts=posts)
 
-@main.route('/blog/<blog_id>/delete', methods = ['POST'])
+@main.route('/blog/<blog_id>/delete', methods = ['GET','POST'])
 @login_required
-def delete_post(blog_id):
+def delete_blog(blog_id):
     blog = Blog.query.get(blog_id)
-    if blog.user != current_user:
-        abort(403)
-    blog.delete()
+    # if blog.user != current_user:
+    #     abort(403)
+    db.session.delete(blog)
+    db.session.commit()
+
     flash("You have deleted your Blog succesfully!")
-    return redirect(url_for('main.index'))
+    return redirect(url_for('main.blogs'))
 
 
 @main.route('/user/<string:username>')
