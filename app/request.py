@@ -4,9 +4,6 @@ from .models import *
 # Getting the quote base url
 quote_url = 'http://quotes.stormconsultancy.co.uk/random.json'
 
-def configure_request(app):
-    global quote_url
-    quote_url = app.config['QUOTES_URL']
 
 def get_quote():
     '''

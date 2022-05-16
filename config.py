@@ -7,7 +7,6 @@ class Config:
     General configuration parent class
     '''
     UPLOADED_PHOTOS_DEST ='app/static/photos'
-    QUOTES_URL = 'http://quotes.stormconsultancy.co.uk/random.json'
     SQLALCHEMY_TRACK_MODIFICATIONS=True
     #  email configurations
     MAIL_SERVER = 'smtp.googlemail.com'
