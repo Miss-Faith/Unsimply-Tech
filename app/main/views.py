@@ -129,14 +129,16 @@ def updateblog(blog_id):
     blog = Blog.query.get(blog_id)
     if blog.user != current_user:
         abort(403)
-    form = CreateBlog()
+    form = BlogForm()
     if form.validate_on_submit():
         blog.title = form.title.data
-        blog.content = form.content.data
+        blog.description = form.description.data
+        blog.blog = form.blog.data
         db.session.commit()
         flash("You have updated your Blog!")
-        return redirect(url_for('main.blog',id = blog.id)) 
+        return redirect(url_for('main.blogs',id = blog.id)) 
     if request.method == 'GET':
         form.title.data = blog.title
-        form.content.data = blog.content
-    return render_template('newblog.html', form = form)
+        form.description.data = blog.description
+        form.blog.data = blog.blog
+    return render_template('new_blog.html', form = form)
