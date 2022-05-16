@@ -21,6 +21,8 @@ werkzeug = "==0.16.0"
 markupsafe = "==2.0.1"
 flask-migrate = "==2.7.0"
 python-dotenv = "*"
+python-editor = "==1.0.4"
+six = "==1.16.0"
 
 [dev-packages]
 
