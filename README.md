@@ -1,7 +1,7 @@
 # [Unsimply Tech](https://github.com/Miss-Faith/Unsimply-Tech)
 #### By [Faith Mwangi](https://github.com/miss-faith)
 ### Description
-A landing page that provides users with blogs. A User is able to create an account, update their profile, add new blogs, delete or update their blogs and comment on existing blogss.
+A landing page that provides users with blogs. A User is able to create an account, update their profile, add new blogs, delete or update their blogs and comment on existing blogs.
 ## Site
 [Unsimply Tech](https://unsimplytech.herokuapp.com/)
 ### Setup Requirements
